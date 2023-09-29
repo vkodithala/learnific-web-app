@@ -16,11 +16,14 @@ const App = () => {
   return (
     <>
     <body>
-
-      <div class="flex flex-row bg-gray-800 px-8 py-7 text-slate-50">
-        <div class="basis-1/6 font-semibold">Experimental Flights VIP</div>
-        <div class="basis-1/4"><button class="hover:text-sky-300 ease-in duration-200 font-semibold">Create New</button></div>
-        <div class="basis-1/4"></div>
+      <div class="px-5 py-5">
+        <div class="flex flex-col">
+          <h1 class="text-4xl font-bold underline decoration-sky-500 py-2">learnific</h1>
+          <div class="flex flex-row gap-2">
+            <input type="text" placeholder="i want to learn about..." class="border border-gray-300 text-gray-900 text-lg rounded-lg w-1/4 focus:ring-1 focus:ring-sky-500 focus:border-sky-500 focus:outline-none shadow-sm pr-3 pl-3 py-2"></input>
+            <button class="border-2 bg-sky-200 border-sky-500 text-sky-900 font-bold text-lg rounded-lg w-1/8 shadow-sm pr-3 pl-3 py-2 hover:bg-sky-900 hover:text-white transition ease-in-out delay-150 hover:scale-110">Submit</button>
+          </div>
+        </div>
       </div>
     </body>
     </>
