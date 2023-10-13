@@ -3,29 +3,52 @@ import { useState, useEffect } from "react";
 import './App.css';
 
 const App = () => {
-  useEffect(() => {
-    fetch("http://localhost:8080/api/home").then(
-      response => response.json()
-
-    ).then(
-      data => {
-        console.log(data)
+  const [ userInput, setInputValue ] = useState("");
+  const [ inputType, setInputType ] = useState("");
+  const [ responseData, setResponseData ] = useState("");
+  const sendInput = async (e) => {
+    console.log(userInput);
+    console.log(inputType);
+    e.preventDefault();
+    try {
+      const response = await fetch("/get_data", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ prompt: userInput })
+      })
+      if (response.status === 200) {
+        const responseData = await response.json();
+        console.log(responseData.result);
+        setResponseData(responseData.result);
+      } else {
+        console.error(`Request failed with status code ${response.status}`);
       }
-    );
-  }, [])
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <>
-    <body>
-      <div class="px-5 py-5">
-        <div class="flex flex-col">
-          <h1 class="text-4xl font-bold underline decoration-sky-500 py-2">learnific</h1>
-          <div class="flex flex-row gap-2">
-            <input type="text" placeholder="i want to learn about..." class="border border-gray-300 text-gray-900 text-lg rounded-lg w-1/4 focus:ring-1 focus:ring-sky-500 focus:border-sky-500 focus:outline-none shadow-sm pr-3 pl-3 py-2"></input>
-            <button class="border-2 bg-sky-200 border-sky-500 text-sky-900 font-bold text-lg rounded-lg w-1/8 shadow-sm pr-3 pl-3 py-2 hover:bg-sky-900 hover:text-white transition ease-in-out delay-150 hover:scale-110">Submit</button>
+    <div class="flex justify-center items-center h-screen w-screen">
+      <div class="flex items-center flex-col border-2 border-sky-500 p-10 rounded-lg shadow-lg min-w-lg max-w-xl">
+        <h1 class="text-4xl font-bold underline decoration-sky-500 py-2 mb-2">learnific</h1>
+        <div class="flex flex-col gap-2">
+          <input onChange={ (e) => setInputValue(e.target.value) } type="text" placeholder="i want to learn about..." class="border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-1 focus:ring-sky-500 focus:border-sky-500 focus:outline-none shadow-sm pr-3 pl-3 py-2"></input>
+          <select onChange={ (e) => setInputType(e.target.value) } class="border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-1 focus:ring-sky-500 focus:border-sky-500 focus:outline-none shadow-sm pr-3 pl-3 py-2">
+            <option value="google_scholar">academic</option>
+            <option value="google">non-academic</option>
+          </select>
+          <button class="border-2 bg-sky-200 border-sky-500 text-sky-900 font-bold text-lg rounded-lg shadow-sm pr-3 pl-3 py-2 hover:bg-sky-900 hover:text-white transition ease-in-out delay-150" onClick={ sendInput }>generate podcast</button>
+          <div class="bg-sky-50 border-2 border-sky-500 max-w-sm rounded overflow-hidden shadow-lg mt-2">
+            <div class="p-3 max-h-[200px] overflow-y-auto">
+              { responseData }
+            </div>
           </div>
         </div>
       </div>
-    </body>
+    </div>
     </>
   );
 }
