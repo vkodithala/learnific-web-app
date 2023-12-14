@@ -40,7 +40,7 @@ const App = () => {
             <option value="google_scholar">academic</option>
             <option value="google">non-academic</option>
           </select>
-          <button class="border-2 bg-sky-200 border-sky-500 text-sky-900 font-bold text-lg rounded-lg shadow-sm pr-3 pl-3 py-2 hover:bg-sky-900 hover:text-white transition ease-in-out delay-150" onClick={ sendInput }>generate podcast</button>
+          <button class="border-2 bg-sky-200 border-sky-500 text-sky-900 font-bold text-lg rounded-lg shadow-sm pr-3 pl-3 py-2 hover:bg-sky-900 hover:text-white transition ease-in-out delay-150" onClick={ sendInput }>answer my question</button>
           <div class="bg-sky-50 border-2 border-sky-500 max-w-sm rounded overflow-hidden shadow-lg mt-2">
             <div class="p-3 max-h-[200px] overflow-y-auto">
               { responseData }
