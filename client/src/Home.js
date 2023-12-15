@@ -18,12 +18,14 @@ const Home = () => {
         fontSize: "36px",
         fontWeight: "bold",
         color: "#004e7f",
-        marginBottom: "20px"
+        marginBottom: "20px",
+        animation: "float 10s ease-in-out infinite"
       }}>The Research Digest</h1>
       <p style={{
         fontSize: "18px",
         color: "#555",
-        marginBottom: "40px"
+        marginBottom: "40px",
+
       }}>Your Daily Dose of Research Discoveries</p>
 
       <div style={{ display: "flex", alignItems: "center" }}>
