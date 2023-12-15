@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background: radial-gradient(circle,
+      #fefff7 60%, /* No quotes around the hex values and a comma after the percentage */
+      #b2ccd2 100%  /* Gradient goes to 100% to fill the entire space */
+    );
+  }
+  
+  .container h1 {
+    font-size: 50px; /* Use hyphens instead of camelCase and remove quotes */
+    font-weight: bold; /* No need for quotes */
+    color: #004e7f; /* No quotes necessary for hex color values */
+    margin-bottom: 20px; /* Use hyphens instead of camelCase */
+    font-family: 'Lucida Handwriting'; /* This is correct */
+  }
+  
+  

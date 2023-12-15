@@ -1,20 +1,23 @@
 import React from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
+import './Home.css';
 
 const Home = () => {
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "100vh",
-      textAlign: "center"
-    }}>
+    <div className="container">
+      <img
+        src="/header2.png" // Replace with your image path
+        alt="Descriptive Alt Text"
+        style={{
+          width: "100%", // Full width
+          height: "auto", // Maintain aspect ratio
+          marginBottom: "20px" // Space between image and header
+        }}
+      />
       <h1 style={{
         fontSize: "36px",
         fontWeight: "bold",
-        color: "#007bff",
+        color: "#004e7f",
         marginBottom: "20px"
       }}>The Research Digest</h1>
       <p style={{
@@ -37,7 +40,7 @@ const Home = () => {
         />
         <button style={{
           padding: "10px 20px",
-          backgroundColor: "#007bff",
+          backgroundColor: "#ff6f60",
           color: "#fff",
           border: "none",
           borderRadius: "4px",
