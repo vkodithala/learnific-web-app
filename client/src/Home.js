@@ -6,20 +6,18 @@ const Home = () => {
   return (
     <div className="container">
       <img
-        src="/header2.png" // Replace with your image path
-        alt="Descriptive Alt Text"
-        style={{
-          width: "100%", // Full width
+          src="/header2.png" // Replace with your image path
+          alt="Descriptive Alt Text"
+          style={{
+          width: "60%", // Adjust the width as needed
           height: "auto", // Maintain aspect ratio
-          marginBottom: "20px" // Space between image and header
-        }}
-      />
+      }}/>
       <h1 style={{
         fontSize: "36px",
         fontWeight: "bold",
         color: "#004e7f",
         marginBottom: "20px",
-        animation: "float 10s ease-in-out infinite"
+        animation: "float 5s ease-in-out infinite"
       }}>The Research Digest</h1>
       <p style={{
         fontSize: "18px",

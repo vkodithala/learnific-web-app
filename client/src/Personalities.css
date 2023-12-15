@@ -1,0 +1,126 @@
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centering content horizontally */
+    justify-content: center; /* Centering content vertically */
+    height: 100vh;
+    background: radial-gradient(circle, #fefff7 70%, #b2ccd2 100%);
+    padding: 20px; /* Adding some padding */
+  }
+  .writer input[type="radio"] {
+    display: none; /* Hide the radio button */
+  }
+  
+  .writer label {
+    display: block; /* Make the label a block element to fill the card */
+    cursor: pointer; /* Pointer cursor on hover */
+    height: 100%; /* Full height of the card */
+  }
+  
+  .writers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid layout */
+    gap: 20px; /* Space between grid items */
+    width: 100%;
+    max-width: 1200px; /* Maximum width of the grid */
+    margin: 0 auto; /* Centering the grid */
+  }
+  
+  .writer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff; /* White background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s; /* Added transform for a subtle scaling effect */
+    cursor: pointer;
+    height: 320px;
+    overflow: hidden;
+  }
+  
+  .writer:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+    transform: translateY(-5px); /* Slight upward translation on hover */
+  }
+  
+  .writer img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    object-fit: cover; /* Maintain aspect ratio while filling the circle */
+  }
+  
+  .writer input[type="radio"] {
+    margin-top: 10px; /* Space above the radio button */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  .writer h2 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+  }
+
+  .writer p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+    max-height: 120px;
+    overflow: hidden;
+  }
+  
+  .writer label {
+    cursor: pointer; /* Pointer cursor on hover */
+    font-weight: bold; /* Bold font for labels */
+  }
+  
+  .confirm-button {
+    background-color: #ff6f60; /* Green background */
+    color: white; /* White text */
+    border: none; /* No border */
+    padding: 10px 20px; /* Padding inside the button */
+    text-align: center; /* Centering text */
+    text-decoration: none; /* No underline */
+    border-radius: 5px;
+    display: inline-block; /* Inline block level */
+    font-size: 16px; /* Font size */
+    margin: 20px 0; /* Margin around the button */
+    transition-duration: 0.4s; /* Smooth transition for hover effect */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  .example-newsletter {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  
+  .confirm-button:hover {
+    background-color: hsl(6, 100%, 60%); /* Adjust the lightness value as needed */
+    /* Other button styles */
+  }
+
+  .glow {
+    box-shadow: 0 0 15px #007bff; /* Blue glow */
+  }
+  .expand-link {
+    display: block;
+    margin-top: auto; /* Push the button to the bottom */
+    font-size: 14px;
+    color: #007bff; /* Blue color for the link */
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.3s ease; /* Smooth color transition */
+    margin-top: 10px;
+  }
+  
+  .expand-link:hover {
+    color: #004e7f; /* Darker blue on hover */
+  }
+  
