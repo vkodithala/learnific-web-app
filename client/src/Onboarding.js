@@ -1,16 +1,92 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './OnboardingPage.css';
 
 const OnboardingPage = () => {
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState('');
     const [isBotTyping, setIsBotTyping] = useState(false);
+    const [userField, setUserField] = useState('');
+    const [userTopics, setUserTopics] = useState([]);
 
-    const botMessage = {
-        text: 'Yes',
-        sender: 'bot',
-        username: 'Avery - Content Curator',
-        iconUrl: '/contentCurator.jpeg'
+    useEffect(() => {
+        sendWelcomeMessage();
+    }, []);
+
+    const sendWelcomeMessage = () => {
+        const welcomeMessage = {
+            text: "Hi there! I'm Avery. Welcome to Research Digest. I'd love to learn about your interests so our team can put together a personalized newsletter for you.",
+            sender: 'bot',
+            username: 'Avery - Content Curator',
+            iconUrl: '/contentCurator.jpeg'
+        };
+        setMessages([welcomeMessage]);
+    };
+
+    const sendFieldInquiry = () => {
+        const fieldInquiry = {
+            text: "First off, what is ONE general area of research that excites you? You know, like healthcare, physics, AI - whatever gets you excited. I want to know what you're passionate about.",
+            sender: 'bot',
+            username: 'Avery - Content Curator',
+            iconUrl: '/contentCurator.jpeg'
+        };
+        setMessages((currentMessages) => [...currentMessages, fieldInquiry]);
+    };
+
+    const sendTopicInquiry = () => {
+        const topicInquiry = {
+            text: `Okay, now thinking specifically about ${userField}, what is ONE topic in that area really captures your curiosity? For example...[give examples]. `,
+            sender: 'bot',
+            username: 'Avery - Content Curator',
+            iconUrl: '/contentCurator.jpeg'
+        };
+        setMessages((currentMessages) => [...currentMessages, topicInquiry]);
+    };
+
+    const askWhyTopic = () => {
+        const latestTopic = userTopics[userTopics.length - 1];
+    
+        const whyTopicMessage = {
+            text: `Tell me a bit more about why ${latestTopic} fascinates you. The more details the better so I can fine tune your newsletter!`,
+            sender: 'bot',
+            username: 'Avery - Content Curator',
+            iconUrl: '/contentCurator.jpeg'
+        };
+        setMessages((currentMessages) => [...currentMessages, whyTopicMessage]);
+    };
+    
+
+    const askMoreTopics = () => {
+        // Create a unique list of topics within the current field
+        const uniqueTopics = Array.from(new Set(userTopics));
+    
+        const moreTopicsMessage = {
+            text: `That sounds awesome! Are there any more ${userField} topics like ${uniqueTopics.join(', ')} that you’re interested in?`,
+            sender: 'bot',
+            username: 'Avery - Content Curator',
+            iconUrl: '/contentCurator.jpeg'
+        };
+        setMessages((currentMessages) => [...currentMessages, moreTopicsMessage]);
+    };
+    
+
+    const askExpertise = () => {
+        const expertiseMessage = {
+            text: `Let me ask - would you consider yourself pretty knowledgeable about any of the topics we just discussed? ${userTopics.join(', ')}?`,
+            sender: 'bot',
+            username: 'Avery - Content Curator',
+            iconUrl: '/contentCurator.jpeg'
+        };
+        setMessages((currentMessages) => [...currentMessages, expertiseMessage]);
+    };
+
+    const askNewTopics = () => {
+        const newTopicsMessage = {
+            text: `Also, are any of these topics totally new territory for you? Areas where you feel like a complete beginner and are really just looking to learn the basics? ${userTopics.join(', ')}?`,
+            sender: 'bot',
+            username: 'Avery - Content Curator',
+            iconUrl: '/contentCurator.jpeg'
+        };
+        setMessages((currentMessages) => [...currentMessages, newTopicsMessage]);
     };
 
     const userMessage = (input) => ({
@@ -23,14 +99,44 @@ const OnboardingPage = () => {
     const sendMessage = (event) => {
         event.preventDefault();
         if (input.trim() !== '') {
-            setMessages([...messages, userMessage(input)]);
+            const newUserMessage = userMessage(input);
+            setMessages([...messages, newUserMessage]);
+
             setInput('');
-            setIsBotTyping(true); // Show typing indicator
+            setIsBotTyping(true);
 
             setTimeout(() => {
-                setIsBotTyping(false); // Hide typing indicator
-                setMessages((currentMessages) => [...currentMessages, botMessage]); // Add bot message
-            }, 3000); // Wait for 3 seconds
+                setIsBotTyping(false);
+
+                // Determine the next message based on the conversation stage
+                switch (messages.length) {
+                    case 1:
+                        sendFieldInquiry();
+                        break;
+                    case 3:
+                        setUserField(input.trim());
+                        sendTopicInquiry();
+                        break;
+                    case 5:
+                        setUserTopics([...userTopics, input.trim()]);
+                        askWhyTopic();
+                        break;
+                    case 7:
+                        askMoreTopics();
+                        break;
+                    case 9:
+                        if (input.trim().toLowerCase() === 'yes') {
+                            sendTopicInquiry(); // Repeat the topic inquiry
+                        } else {
+                            askExpertise();
+                        }
+                        break;
+                    case 11:
+                        askNewTopics();
+                        break;
+                    // Add more cases as needed for further interactions
+                }
+            }, 3000);
         }
     };
 
