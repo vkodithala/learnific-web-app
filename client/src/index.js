@@ -10,6 +10,6 @@ import Personalities from './Personalities';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <OnboardingPage />
+    <Personalities />
   </React.StrictMode>
 );
