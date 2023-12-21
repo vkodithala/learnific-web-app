@@ -62,7 +62,19 @@ user_info = "A Beginier to Healthcare, and aritifical intelligence. Provide more
 
 api_key = "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"
 
-assistant = NewsletterAssistant(api_key, SamiraByte, user_info)
+assistant = NewsletterAssistant(api_key, LeoHart, user_info)
+
+
+
+def replace_placeholder(content, placeholder, replacement_text):
+    return content.replace(placeholder, replacement_text)
+
+
+# Usage
+original_file_path = 'newsletter/emailify-template/index.html'
+new_file_path = 'GeneratedNewsletters/newsletter.html'
+with open(original_file_path, 'r', encoding='utf-8') as file:
+    html_content = file.read()
 
 paperContent = ""
 #convert txt file to string
@@ -78,10 +90,43 @@ paperTitle = 'DFUCare: Deep learning platform for diabetic foot ulcer detection,
 paperAbstract = 'Diabetic foot ulcers (DFUs) are a severe complication among diabetic patients and often result in amputation and even mortality. Early recognition of infection and ischemia is crucial for improved healing, but current methods are invasive, time-consuming, and expensive. To address this need, we have developed DFUCare, a platform that uses computer vision and deep learning (DL) algorithms to noninvasively localize, classify, and analyze DFUs. The platform uses a combination of CIELAB and YCbCr color space segmentation with a pre-trained YOLOv5s algorithm for wound localization achieving an F1-score of 0.80 and an mAP of 0.861. Using DL algorithms to identify infection and ischemia, we achieved a binary accuracy of 79.76% for infection classification and 94.81% for ischemic classification on a validation set. DFUCare also measures wound size and performs tissue color and textural analysis to allow comparative analysis of macroscopic features of the wound. We tested DFUCare performance in a clinical setting to analyze the DFUs collected using a cell phone camera. DFUCare successfully segmented the skin from the background, localized the wound with less than 10% error, and predicted infection and ischemia with less than 10% error. This innovative approach has the potential to deliver a paradigm shift in diabetic foot care by providing a cost-effective, remote, and convenient healthcare solution.'
 
 article_header = assistant.generate_article_header(paperTitle, paperAbstract)
-#article_content = assistant.generate_article_content(paperContent,article_header)
+article_content = assistant.generate_article_content(paperContent,article_header)
 
-#print("Introduction:" + introduction + "\n")
-#print("Header:" + article_header + "\n")
-#print("Content:" + article_content + "\n")
-print("Image Link:" + assistant.generate_article_image(article_header))
+print("Introduction:" + introduction + "\n")
+print("Header:" + article_header + "\n")
+print("Content:" + article_content + "\n")
 
+
+#introduction
+html_content = replace_placeholder(html_content, '{{News Title}}', "Wintery Research Special")
+html_content = replace_placeholder(html_content, '{{Introduction}}', introduction)
+html_content = replace_placeholder(html_content, '{{Daily Quote}}', "Rest in the end. Not the middle.")
+html_content = replace_placeholder(html_content, '{{Quote Author}}', "Kobe Bryant")
+
+html_content = replace_placeholder(html_content, '{{Topic #1}}', "Biotechnology")
+html_content = replace_placeholder(html_content, '{{Article Title #1}}', article_header)
+html_content = replace_placeholder(html_content, '{{Content 1}}', article_content)
+
+html_content = replace_placeholder(html_content, '{{Topic #2}}', "Biotechnology")
+html_content = replace_placeholder(html_content, '{{Article Title #2}}', article_header)
+html_content = replace_placeholder(html_content, '{{Content 2}}', article_content)
+
+html_content = replace_placeholder(html_content, '{{Topic #3}}', "Biotechnology")
+html_content = replace_placeholder(html_content, '{{Article #3}}', article_header)
+html_content = replace_placeholder(html_content, '{{Content 3}}', article_content)
+
+
+
+
+imageLink = assistant.generate_article_image(article_header)
+html_content = replace_placeholder(html_content, '{{Image #1}}', imageLink)
+html_content = replace_placeholder(html_content, '{{Image #2}}', imageLink)
+html_content = replace_placeholder(html_content, '{{Image #3}}', imageLink)
+
+
+html_content = replace_placeholder(html_content, '{{PaperLink #1}}', 'https://www.researchsquare.com/article/rs-3228873/v1')
+html_content = replace_placeholder(html_content, '{{PaperLink #2}}', 'https://www.researchsquare.com/article/rs-3228873/v1')
+html_content = replace_placeholder(html_content, '{{PaperLink #3}}', 'https://www.researchsquare.com/article/rs-3228873/v1')
+
+with open(new_file_path, 'w', encoding='utf-8') as file:
+    file.write(html_content)
