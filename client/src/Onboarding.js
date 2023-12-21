@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './OnboardingPage.css';
 
 const ConversationState = {
@@ -9,7 +9,8 @@ const ConversationState = {
     EXPERTISE: 'expertise',
     SCOPE: 'scope',
     FREQUENCY: 'frequency',
-    OTHER: 'other'
+    OTHER: 'other',
+    FINAL: 'final'
 };
 const OnboardingPage = () => {
     const welcomeMessage = {
@@ -24,13 +25,22 @@ const OnboardingPage = () => {
     const [isBotTyping, setIsBotTyping] = useState(false);
     const [conversationState, setConversationState] = useState(ConversationState.AREAS);
     const [userInterests, setUserInterests] = useState({
-        researchAreas: [],
-        specificTopics: [],
+        interests: [],
         whyTopics: '', //text response
         expertise: '', //make this number 1-5?
-        detailed: '', //in-depth or broad
-        frequency: '' //daily or weekly
+        detailed: false, //true is overview, false is in-depth
+        daily: false //true for daily, false for weekly
     });
+    const [initialTopicsGiven, setInitialTopicsGiven] = useState(false);
+    const [renderAreas, setRenderAreas] = useState(false);
+    const [currentArea, setCurrentArea] = useState(null);
+    const [prevArea, setPrevArea] = useState(null);
+
+    useEffect(() => {
+        console.log('State updated:', userInterests);
+    }, [userInterests]); // This effect runs whenever userInterests changes
+
+    
 
     const botMessage = (text) => ({
         text,
@@ -55,33 +65,81 @@ const OnboardingPage = () => {
         }
     };
 
+    const handleTopics = (userInput, currentArea) => {
+        const topics = userInput.split(',').map(topic => topic.trim());
+            
+        setUserInterests(prevInterests => ({
+             ...prevInterests,
+            interests: prevInterests.interests.map(interest => 
+                interest.area === currentArea ? { ...interest, topics: topics } : interest
+            )
+        }));
+    };
+
     const handleConversation = (userInput) => {
         setIsBotTyping(true);
-
         setTimeout(() => {
             setIsBotTyping(false);
             let nextMessageText = '';
-
             switch (conversationState) {
                 case ConversationState.AREAS:
                     nextMessageText = "First off, what general areas of research light you up? You know, like healthcare, physics, AI - whatever gets you excited. I want to know what you're passionate about.";
                     setConversationState(ConversationState.TOPICS);
                     break;
                 case ConversationState.TOPICS:
-                    const areas = userInput.split(',').map(area => area.trim());
-                    setUserInterests({ ...userInterests, researchAreas: areas });
-                    nextMessageText = `Okay, now thinking specifically about ${areas.join(', ')}, what topics in these areas really capture your curiosity?`;
-                    setConversationState(ConversationState.WHY_TOPICS);
+                    if (!renderAreas) {
+                        setRenderAreas(true);
+                        const areas = userInput.split(',').map(area => area.trim());
+                        const interestsWithNullTopics = areas.map(area => ({
+                            area: area,
+                            topics: null
+                        }));
+
+                        setUserInterests(prevInterests => ({
+                            ...prevInterests,
+                            interests: interestsWithNullTopics
+                        }));
+                    } 
+
+                    setPrevArea(currentArea);
+
+                    const interestWithNullTopics = userInterests.interests.find(interest => interest.topics === null); //finds the interest with null topic
+                    const currArea = interestWithNullTopics ? interestWithNullTopics.area : null; //gets the area of the interest with null topic
+                    setCurrentArea(currArea);
+                    
+                    console.log('currentArea', currentArea)
+
+                    
+                    if (currentArea) {
+                        nextMessageText = `Okay, now thinking specifically about ${currentArea}, what topics in that area really capture your curiosity?`;
+
+                    } else {
+                        nextMessageText = "rip?";
+                    }
+
+                    if (initialTopicsGiven) {
+                        handleTopics(userInput, prevArea);
+                    } else {
+                        setInitialTopicsGiven(true);
+                    }
+                    
+                    const countNullTopics = userInterests.interests.filter(interest => interest.topics === null).length;
+                    if (countNullTopics === 1) {
+                        setConversationState(ConversationState.WHY_TOPICS);
+                    }
+                    
+            
+                    
                     break;
                 case ConversationState.WHY_TOPICS:
-                    const topics = userInput.split(',').map(topic => topic.trim());
-                    setUserInterests({ ...userInterests, specificTopics: topics });
-                    nextMessageText = `Tell me a bit more about why ${topics.join(', ')} fascinate you. The more details the better so I can fine tune your newsletter!`;
+                    handleTopics(userInput, currentArea);
+
+                    nextMessageText = `Tell me a bit more about why fascinate you. The more details the better so I can fine tune your newsletter!`;
                     setConversationState(ConversationState.EXPERTISE);
                     break;
                 case ConversationState.EXPERTISE:
                     setUserInterests({ ...userInterests, whyTopics: userInput });
-                    nextMessageText = "Let me ask - would you consider yourself pretty knowledgeable about any of the topics we just discussed? I want to get a sense of where you are starting from in terms of background knowledge.";
+                    nextMessageText = "Let me ask - would you consider yourself pretty knowledgeable about any of the topics we just discussed? I want to get a sense of where you are starting from in terms of background knowledge. Rate each topic from 1-5, where at 1 you are completely new to the topic and at 5 you're a total expert.";
                     setConversationState(ConversationState.SCOPE);
                     break;
                 case ConversationState.SCOPE:
@@ -90,16 +148,20 @@ const OnboardingPage = () => {
                     setConversationState(ConversationState.FREQUENCY);
                     break;
                 case ConversationState.FREQUENCY:
-                    setUserInterests({ ...userInterests, detailed: userInput.toLowerCase() });
-                    nextMessageText = `Great! We'll send you personalized updates about ${areas.join(', ')} right to your inbox. How often would you like us to send you The Research Digest?`
+                    setUserInterests({ ...userInterests, detailed: userInput.toLowerCase().includes("in-depth") });
+                    nextMessageText = `Great! We'll send you personalized updates about ${userInterests.researchAreas.join(', ')} right to your inbox. How often would you like us to send you The Research Digest?`
                     setConversationState(ConversationState.OTHER);
                     break;
                 case ConversationState.OTHER:
-                    setUserInterests({ ...userInterests, frequency: userInput.toLowerCase() });
+                    setUserInterests({ ...userInterests, daily: userInput.toLowerCase().includes("daily") });
                     nextMessageText = "Let me know if you have any other requests for the type of content you want to see. I'm here to make this newsletter perfect for you! Anything else on your mind?";
+                    setConversationState(ConversationState.FINAL);
+                    break;
+                case ConversationState.FINAL:
+                    setUserInterests({ ...userInterests, other: userInput });
+                    nextMessageText = "Awesome! Thanks for chatting with me. I'll get to work on your personalized newsletter right away. Keep a lookout for your first issue!";
                     setConversationState(ConversationState.WELCOME);
                     break;
-                    
                 default:
                     nextMessageText = "I'm not sure how to respond to that. Could you please repeat?";
             }
