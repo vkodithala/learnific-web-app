@@ -1,0 +1,77 @@
+Diabetic foot ulcers (DFUs) are a severe complication among diabetic patients and often result in
+amputation and even mortality. Early recognition of infection and ischemia is crucial for improved
+healing, but current methods are invasive, time-consuming, and expensive. To address this need, we have
+developed DFUCare, a platform that uses computer vision and deep learning (DL) algorithms to noninvasively localize, classify, and analyze DFUs. The platform uses a combination of CIELAB and YCbCr
+color space segmentation with a pre-trained YOLOv5s algorithm for wound localization achieving an F1-
+score of 0.80 and an mAP of 0.861. Using DL algorithms to identify infection and ischemia, we achieved
+a binary accuracy of 79.76% for infection classification and 94.81% for ischemic classification on a
+validation set. DFUCare also measures wound size and performs tissue color and textural analysis to
+allow comparative analysis of macroscopic features of the wound. We tested DFUCare performance in a
+clinical setting to analyze the DFUs collected using a cell phone camera. DFUCare successfully
+segmented the skin from the background, localized the wound with less than 10% error, and predicted
+infection and ischemia with less than 10% error. This innovative approach has the potential to deliver a
+paradigm shift in diabetic foot care by providing a cost-effective, remote, and convenient healthcare
+solution
+
+Diabetic foot ulceration (DFU) is a serious complication affecting people with diabetes, with more than
+half of DFUs at risk of becoming infected. Of these infections, approximately 20% require amputation
+1,2
+.
+This is a significant concern as patients who undergo amputation due to DFUs have a high mortality rate,
+with more than half expected to die within five years
+3
+. Additionally, the financial burden associated with
+treating and managing DFUs and their complications surpasses that of the top five cancers, with an
+annual cost exceeding 11 billion dollars in the United States alone
+4
+. As the prevalence of Diabetes
+Mellitus (DM) continues to rise, DFUs are expected to become an even greater burden for global health
+systems and may be one of the most expensive diabetes complications
+5
+
+To address these limitations, it is essential to develop a non-invasive and automated tool that can
+comprehensively analyze wound tissues, even in resource-limited areas. This study aims to investigate
+this issue by introducing the DFUCare, a novel approach that enables the comprehensive analysis of
+wounds through images captured using standard phone hardware. DFUCare incorporates key
+components such as wound region detection models, infection and ischemia classification, size
+measurement, and traditional color and textural analysis. DFUCare's non-invasive nature, coupled with its
+automated analysis, empowers clinicians to manage infections, ischemia, and other critical physical
+features more effectively, ultimately enhancing DFU wound management.
+
+As an initial step of the DFUCare, we developed a wound region detection module using the YOLOv5s
+model trained on the DFUC2020 dataset. This algorithm achieved an F1-score of 0.78 and a mAP of
+0.847 on the test set (Figure S1A). However, upon further analysis on the incorrectly localized test cases,
+we observed detection of false positives on the image background (Figure 2A).
+Page 4/23
+To prevent false positives, image preprocessing pipeline removing background images was developed.
+The performance of the image preprocessing pipeline was evaluated using a subset of 100 randomly
+chosen images from the DFUC2020 dataset. The performance of the workflow was evaluated through
+manual analysis of the resulting images, specifically by determining if the wound region was
+unobstructed/visible after background removal was applied. The implemented filtering workflow has
+shown 97% accuracy in segmenting the foreground from the background for downstream analysis.
+Applying this preprocessing step before the wound localization algorithm, performance increase of F1-
+score of 0.80 and mAP of 0.861 has been observed (Figure S1B).
+
+DFUCare was found to be comparable to a physician's analysis in terms of accuracy (Table 3, Figure S3).
+The trained YOLO v5s model successfully localized all DFUs diagnosed by physician except one out of
+ten patients (patient 4), in which two DFUs were detected. In this test case, the larger bounding box
+captured the overall wound region, and the smaller bounding box captured the open wound in the overall
+wound image.
+In DFU classification, DFUCare was correct for all of twelve wounds except for the case of ischemic
+classification for patient 4. This discrepancy may be attributed to the presence of moisture in the image,
+as ischemia is associated with dryness of the wound and surrounding skin
+
+To optimize the performance of wound detection model, a comprehensive image preprocessing pipeline
+with the primary objective of removing background regions, in the wound images was applied (Fig. 3A).
+Before background removal, min-max image normalization was applied to ensure the comparability of
+wound images across different samples. This technique rescaled the pixel intensities of each image to a
+specific range, between 0 and 1. By normalizing the pixel intensities through subtracting the minimum
+value and dividing by the range of pixel values, consistent intensity levels across all samples were
+achieved, accounting for variations in camera resolution and lighting conditions.
+To classify the detected wound images into four categories: i) infection, ii) ischemia, iii) both infection
+and ischemia, and iv) neither infection nor ischemia, both a classical machine learning pipeline trained on
+hand-crafted image features and a DL pipeline were developed. The inclusion of the classical machine
+learning approach facilitates the extraction of interpretable wound features, ensuring transparency and
+practicality in medical application. The DL-based approach automatically learns complex patterns and
+hierarchical representations from wound images, capturing subtle features and nuances not easily
+discernible through traditional hand-crafted feature extraction, increasing the model performance.

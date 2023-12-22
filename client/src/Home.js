@@ -1,26 +1,29 @@
 import React from "react";
-// import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
+import './Home.css';
 
 const Home = () => {
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "100vh",
-      textAlign: "center"
-    }}>
+    <div className="container">
+      <img
+          src="/header2.png" // Replace with your image path
+          alt="Descriptive Alt Text"
+          style={{
+          width: "60%", // Adjust the width as needed
+          height: "auto", // Maintain aspect ratio
+      }}/>
       <h1 style={{
         fontSize: "36px",
         fontWeight: "bold",
-        color: "#007bff",
-        marginBottom: "20px"
+        color: "#004e7f",
+        marginBottom: "20px",
+        animation: "float 5s ease-in-out infinite"
       }}>The Research Digest</h1>
       <p style={{
         fontSize: "18px",
         color: "#555",
-        marginBottom: "40px"
+        marginBottom: "40px",
+
       }}>Your Daily Dose of Research Discoveries</p>
 
       <div style={{ display: "flex", alignItems: "center" }}>
@@ -37,7 +40,7 @@ const Home = () => {
         />
         <button style={{
           padding: "10px 20px",
-          backgroundColor: "#007bff",
+          backgroundColor: "#ff6f60",
           color: "#fff",
           border: "none",
           borderRadius: "4px",
