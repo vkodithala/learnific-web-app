@@ -1,4 +1,6 @@
 from openai import OpenAI
+from textblob import TextBlob
+import re
 
 class NewsletterAssistant:
     def __init__(self, api_key, personality_info, user_info):
@@ -19,7 +21,7 @@ class NewsletterAssistant:
 
     def _generate_message(self, task_description, max_tokens=256):
         response = self.client.chat.completions.create(
-            model="gpt-4",
+            model="gpt-3.5-turbo-16k",
             messages=[
                 {
                     "role": "system",
@@ -42,12 +44,12 @@ class NewsletterAssistant:
         return self._generate_message(task_info, max_tokens=256)
 
     def generate_article_header(self, paper_title, paper_abstract):
-        task_description = f"You are currently coming up with a short title (under 6 words) for the newsletter article. The article is based on the following information. With the information below come up with a short captivating, and eye-catching title for the article: {paper_title} \n\n{paper_abstract}. Write it in sentence case"
+        task_description = f"You are currently coming up with a short title (under 6 words) for the newsletter article. The article is based on the following information. With the information below come up with a short captivating, and eye-catching title for the article: {paper_title} \n\n{paper_abstract}. Write it in sentence case. Here is an example: Bin stores are the hot new way to score ridiculous deals. Follow the same structure."
         return self._generate_message( task_description, max_tokens=30)
 
     def generate_article_content(self, paper_content, header):
-        task_description = f"Task: You are currently writing the content for the newsletter article. The article's header is {header}. Here is some improtant information from the paper to transform into the article contnent given below. Can you write a 3 paragraph newsletter article based on this information that is engaging and follows your writting style above"
-        return self._generate_message(task_description + paper_content+ "Example: Here is an example: The Los Angeles County medical examiner’s office on Friday ruled the drowning death of Friends star Matthew Perry in October was due to “the acute effects of ketamine.” The 54-year-old Perry battled addiction for decades and detailed in his memoir how he was using ketamine as part of his treatment for depression and anxiety.Now Perry’s death, which was also determined to be an accident, has put greater attention on ketamine, a drug that has proven to be an effective mental health treatment but poses risks in recreational and unregulated settings.Ketamine’s journey to health aidThe drug’s origins date to the 1970s as an injectable anesthetic for humans and animals. It took a circuitous route to becoming a breakthrough treatment for mental health.In the 1990s, ketamine—known as “Special K”—emerged as a popular party drug thanks to its hallucinogenic qualities.In 1999, it became a Schedule III nonnarcotic substance under the Controlled Substances Act. Schedule III drugs are defined by the Drug Enforcement Administration as having a “moderate to low potential for physical and psychological dependence.”In 2006, researchers at the National Institutes of Health showed that an intravenous dose of ketamine could relieve severe depression in a matter of hours.In 2019, the FDA approved a nasal spray called esketamine, which is derived from ketamine and used for treatment-resistant depression.The main difference between medicinal and recreational use of ketamine is the dosage, which is much higher when it’s used as an anesthetic or illicitly. The dangers of home useEsketamine must be administered by a healthcare professional in a clinical setting. Perry’s autopsy report said the ketamine in his system could not have been from his last known ketamine therapy session, which was about a week and a half before he died. Online providers started prescribing ketamine for home use during the pandemic, thanks to relaxed federal rules on remote prescriptions. Although ketamine overdoses are rare, the drug’s ability to render a subject unconscious with too high of a dose without supervision has led to accidental deaths. Big picture: Investors have written big checks to startups aiming to treat mental illness with psychedelics, and Silicon Valley elites such as Elon Musk reportedly use ketamine, LSD, and other mind-expanding drugs recreationally. Dr. Gerard Sanacora, director of Yale University’s depression-research program, told the WSJ that Perry’s death “should be a wake-up call that ketamine needs to be used appropriately.", max_tokens=4000)
+        task_description = f"Task: You are currently writing the content for the newsletter article. Here is some improtant information from the paper to transform into the article contnent given below. Can you write no more than 3 paragraph for a newsletter article based on this information that is engaging and follows your writting style above"
+        return self._generate_message(task_description + paper_content+ "Rule: DO NOT INCLUDE HEADERS OR SUBHEADERS HERE. "+"Here is an example Follow the same structure and style of this article when writing your article: The Los Angeles County medical examiner’s office on Friday ruled the drowning death of Friends star Matthew Perry in October was due to “the acute effects of ketamine.” The 54-year-old Perry battled addiction for decades and detailed in his memoir how he was using ketamine as part of his treatment for depression and anxiety.Now Perry’s death, which was also determined to be an accident, has put greater attention on ketamine, a drug that has proven to be an effective mental health treatment but poses risks in recreational and unregulated settings.Ketamine’s journey to health aidThe drug’s origins date to the 1970s as an injectable anesthetic for humans and animals. It took a circuitous route to becoming a breakthrough treatment for mental health.In the 1990s, ketamine—known as “Special K”—emerged as a popular party drug thanks to its hallucinogenic qualities.In 1999, it became a Schedule III nonnarcotic substance under the Controlled Substances Act. Schedule III drugs are defined by the Drug Enforcement Administration as having a “moderate to low potential for physical and psychological dependence.”In 2006, researchers at the National Institutes of Health showed that an intravenous dose of ketamine could relieve severe depression in a matter of hours.In 2019, the FDA approved a nasal spray called esketamine, which is derived from ketamine and used for treatment-resistant depression.The main difference between medicinal and recreational use of ketamine is the dosage, which is much higher when it’s used as an anesthetic or illicitly. The dangers of home useEsketamine must be administered by a healthcare professional in a clinical setting. Perry’s autopsy report said the ketamine in his system could not have been from his last known ketamine therapy session, which was about a week and a half before he died. Online providers started prescribing ketamine for home use during the pandemic, thanks to relaxed federal rules on remote prescriptions. Although ketamine overdoses are rare, the drug’s ability to render a subject unconscious with too high of a dose without supervision has led to accidental deaths. Big picture: Investors have written big checks to startups aiming to treat mental illness with psychedelics, and Silicon Valley elites such as Elon Musk reportedly use ketamine, LSD, and other mind-expanding drugs recreationally. Dr. Gerard Sanacora, director of Yale University’s depression-research program, told the WSJ that Perry’s death “should be a wake-up call that ketamine needs to be used appropriately.", max_tokens=4000)
 
 
     
@@ -60,10 +62,9 @@ SamiraByte = "You are an email newsletter reporter named Samira Byte. Your writi
 user_info = "A Beginier to Healthcare, and aritifical intelligence. Provide more broad sumaries and explain in simple terms."
 
 
-api_key = "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"
+api_key = "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"
 
 assistant = NewsletterAssistant(api_key, LeoHart, user_info)
-
 
 
 def replace_placeholder(content, placeholder, replacement_text):
@@ -92,9 +93,18 @@ paperAbstract = 'Diabetic foot ulcers (DFUs) are a severe complication among dia
 article_header = assistant.generate_article_header(paperTitle, paperAbstract)
 article_content = assistant.generate_article_content(paperContent,article_header)
 
-print("Introduction:" + introduction + "\n")
-print("Header:" + article_header + "\n")
-print("Content:" + article_content + "\n")
+paragraphs = article_content.split('\n')
+print("----------------------------------")
+print(paragraphs)
+print("----------------------------------")
+# Enclose each paragraph in HTML paragraph tags
+html_paragraphs = [f'<br>{paragraph}<br>' for paragraph in paragraphs if paragraph]
+print(html_paragraphs)
+print("----------------------------------")
+html_paragraphs = ' '.join(html_paragraphs)
+print("After joining: "+html_paragraphs)
+print("----------------------------------")
+
 
 
 #introduction
@@ -105,15 +115,15 @@ html_content = replace_placeholder(html_content, '{{Quote Author}}', "Kobe Bryan
 
 html_content = replace_placeholder(html_content, '{{Topic #1}}', "Biotechnology")
 html_content = replace_placeholder(html_content, '{{Article Title #1}}', article_header)
-html_content = replace_placeholder(html_content, '{{Content 1}}', article_content)
+html_content = replace_placeholder(html_content, '{{Content 1}}',html_paragraphs)
 
 html_content = replace_placeholder(html_content, '{{Topic #2}}', "Biotechnology")
 html_content = replace_placeholder(html_content, '{{Article Title #2}}', article_header)
-html_content = replace_placeholder(html_content, '{{Content 2}}', article_content)
+html_content = replace_placeholder(html_content, '{{Content 2}}', html_paragraphs)
 
 html_content = replace_placeholder(html_content, '{{Topic #3}}', "Biotechnology")
 html_content = replace_placeholder(html_content, '{{Article #3}}', article_header)
-html_content = replace_placeholder(html_content, '{{Content 3}}', article_content)
+html_content = replace_placeholder(html_content, '{{Content 3}}', html_paragraphs)
 
 
 
