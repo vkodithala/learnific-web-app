@@ -6,8 +6,8 @@ import "./SignUpBar.css";
 export const SignUpBar = (props) => {
   return (
     <ProgressBar
-        percent={((props.step - 1) * 100) / 7}
-        filledBackground="indigo"
+        percent={((props.step - 1) * 100) / 8}
+        filledBackground="#ff6f60"
       >
         <Step transition="scale">
           {({ accomplished, index }) => (

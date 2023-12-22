@@ -38,6 +38,7 @@ const Home = () => {
             fontSize: "16px"
           }}
         />
+        <Link to="/App">
         <button style={{
           padding: "10px 20px",
           backgroundColor: "#ff6f60",
@@ -47,6 +48,7 @@ const Home = () => {
           fontSize: "16px",
           cursor: "pointer"
         }}>Get Started →</button>
+        </Link>
       </div>
 
     </div>
