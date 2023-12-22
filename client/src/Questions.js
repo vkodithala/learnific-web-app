@@ -37,8 +37,8 @@ export const questions = [
         section: 3,
         items: [
             {
-                label: 'Okay, now thinking specifically about [user\'s field], what topics in that area really capture your curiosity? For example...[give examples]',
-                type: 'text',
+                label: 'Okay, now thinking specifically about [area], what topics in that area really capture your curiosity? For example...[give examples]',
+                type: 'topics',
                 value: 'topics'
             }
         ]
@@ -47,8 +47,8 @@ export const questions = [
         section: 4,
         items: [
                 {
-                        label: 'Tell me a bit more about why those ideas fascinate you. The more details the better so I can fine tune your newsletter!',
-                        type: 'text',
+                        label: 'In a few sentences, tell me a bit more about why [area] fascinates you. The more details the better so I can fine tune your newsletter!',
+                        type: 'why',
                         value: 'details'
                 }
         ]
@@ -57,8 +57,8 @@ export const questions = [
         section: 5,
         items: [
                 {
-                        label: 'Let me ask - would you consider yourself pretty knowledgeable about any of the topics we just discussed? I want to get a sense of where you are starting from in terms of background knowledge. Rate 1-5',
-                        type: 'text',
+                        label: 'Rate 1-5 expertise in [topic]',
+                        type: 'expertise',
                         value: 'expertise'
                 }
         ]
@@ -78,7 +78,7 @@ export const questions = [
         section: 7,
         items: [
                 {
-                        label: 'Great! We`ll send you personalized updates about [user`s list of fields] right to your inbox. How often would you like us to send you The Research Digest?',
+                        label: 'Great! We\'ll send you personalized updates about [user`s list of fields] right to your inbox. How often would you like us to send you The Research Digest?',
                         type: 'select',
                         options: ['Weekly', 'Daily'],
                         value: 'frequency'

@@ -1,10 +1,13 @@
 import { Form } from "react-bootstrap";
 import { useState } from "react";
 
-export const FormItem = ({ item, onChange, answer }) => {
+export const FormItem = ({ item, onChange, answer, prevAnswers }) => {
   // Initialize currentValue based on item.type
   const initialVal = item.type === 'areas' ? (answer || ['', '', '']) : (answer || '');
   const [currentValue, setCurrentValue] = useState(initialVal);
+
+  const areas = prevAnswers[2]?.areas.filter(area => area.trim() !== '') || [];
+  const topics = prevAnswers[3]?.topics.map(topic => topic.split(',')).flat() || [];
 
   const handleChange = (value, index = null) => {
     if (index !== null) {
@@ -39,7 +42,57 @@ export const FormItem = ({ item, onChange, answer }) => {
           }
         </>
       );
-
+    case 'topics':
+      return (
+        <>
+          {areas.map((area, index) => (
+            <div>
+              <Form.Label>{item.label.replace("[area]", area || "rip")}</Form.Label>
+              <Form.Control
+                type="text"
+                className="mb-3"
+                id={`${item.label}-${index}`}
+                onChange={(e) => handleChange(e.target.value, index)}
+                value={currentValue[index] || ''}
+              />
+            </div>
+          ))}
+        </>
+      );
+    case 'why':
+      return (
+        <>
+          {areas.map((area, index) => (
+            <div>
+              <Form.Label>{item.label.replace("[area]", area || "rip")}</Form.Label>
+              <Form.Control
+                type="text"
+                className="mb-3"
+                id={`${item.label}-${index}`}
+                onChange={(e) => handleChange(e.target.value, index)}
+                value={currentValue[index] || ''}
+              />
+            </div>
+          ))}
+        </>
+      );
+      case 'expertise':
+        return (
+          <>
+            {topics.map((area, index) => (
+              <div>
+                <Form.Label>{item.label.replace("[topic]", area || "rip")}</Form.Label>
+                <Form.Control
+                  type="text"
+                  className="mb-3"
+                  id={`${item.label}-${index}`}
+                  onChange={(e) => handleChange(e.target.value, index)}
+                  value={currentValue[index] || ''}
+                />
+              </div>
+            ))}
+          </>
+        );
     case 'text':
       return (
         <>

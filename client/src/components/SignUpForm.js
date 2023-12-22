@@ -22,16 +22,14 @@ export const SignUpForm = (props) => {
     setAnswers({...answers, [category]: value});
   }
 
-useEffect(() => {
-    console.log(answers);
-}, [answers]);
+
 
   return (
     <div className="text-left">
       {
         props.list[props.step - 1].items?.map((item, index) => {
           return (
-            <FormItem key={`${index}_${item.label}`} item={item} onChange={updateAnswers} answer={props.pagesAnswers[props.step] ? props.pagesAnswers[props.step][item.value] : null} />
+            <FormItem prevAnswers={props.prevAnswers} key={`${index}_${item.label}`} item={item} onChange={updateAnswers} answer={props.pagesAnswers[props.step] ? props.pagesAnswers[props.step][item.value] : null} />
           )
         })
       }
