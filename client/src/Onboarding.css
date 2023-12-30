@@ -1,0 +1,10 @@
+@tailwind Base;
+@tailwind Components;
+@tailwind Utilities;
+
+.onboarding-container {
+  width: 1600px;
+  height: 960px;
+  overflow: hidden;
+  background: var(--Background, #FEFFF7);
+}

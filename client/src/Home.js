@@ -1,30 +1,32 @@
 import React from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import './Home.css';
 
+import styles from './new.module.css'; // Import CSS module
+import backgroundImage from './landdingPage.png';
 const Home = () => {
   return (
-    <div className="container">
+    <div style={{backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    textAlign: 'center',}}>
       <img
-          src="/header2.png" // Replace with your image path
+          src="./logo2.png" // Replace with your image path
           alt="Descriptive Alt Text"
           style={{
-          width: "60%", // Adjust the width as needed
-          height: "auto", // Maintain aspect ratio
+          width: "auto", // Adjust the width as needed
+          height: "60%", // Maintain aspect ratio
       }}/>
-      <h1 style={{
-        fontSize: "36px",
-        fontWeight: "bold",
-        color: "#004e7f",
-        marginBottom: "20px",
-        animation: "float 5s ease-in-out infinite"
-      }}>The Research Digest</h1>
       <p style={{
         fontSize: "18px",
         color: "#555",
         marginBottom: "40px",
 
-      }}>Your Daily Dose of Research Discoveries</p>
+      }}>Get your daily ultra-personalized email newsletter, combining the latest in research, news, and social media</p>
 
       <div style={{ display: "flex", alignItems: "center" }}>
         <input

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import './Personalities.css';
-
+import backgroundImage from './signupBack.png';
 const Personalities = () => {
   const [selectedWriter, setSelectedWriter] = useState(null);
+  
 
   // Create a data structure for writers
   const glowEffectClass = "glow";
@@ -32,14 +33,27 @@ const Personalities = () => {
   };
 
   return (
-    <div className="body">
+    <div style={{
+      backgroundImage: `url(${backgroundImage})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      minHeight: "100vh",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "20px",
+    }}>
       {/* New header and description at the top */}
-      <h2 style={{
-        fontSize: "28px",
-        fontWeight: "bold",
-        color: "#004e7f",
-        marginBottom: "20px",
-      }}>The Research Digest</h2>
+      <img
+  src="/logo.png"
+  alt="Logo"
+  style={{
+    width: "200px",
+    height: "auto",
+    marginBottom: "20px",
+  }}
+/>
       <p style={{
         fontSize: "18px",
         color: "#555",
@@ -61,7 +75,8 @@ const Personalities = () => {
         <>
           <div className="example-newsletter">
             <h3>Example Newsletter by {selectedWriter}</h3>
-            <p>Content of the example newsletter...</p>
+           
+            <iframe src="GeneratedNewsletters/newsletter.html" width="100%" height="600px"></iframe>
           </div>
           <button className="confirm-button">Confirm</button>
         </>

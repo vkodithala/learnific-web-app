@@ -11,7 +11,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-
+import Onboarding from './Onboarding';
 
 
 const router = createBrowserRouter([
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/App",
-    element: <App/>
+    element: <Onboarding/>
   },
   {
     path: "/Personalities",

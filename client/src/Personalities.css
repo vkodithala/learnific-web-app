@@ -107,7 +107,7 @@
   }
 
   .glow {
-    box-shadow: 0 0 15px #007bff; /* Blue glow */
+    box-shadow: 0 0 15px #FFD977; /* Blue glow */
   }
   .expand-link {
     display: block;
@@ -123,4 +123,11 @@
   .expand-link:hover {
     color: #004e7f; /* Darker blue on hover */
   }
+  .newsletter-container {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
   
+  .newsletter-container.show {
+    opacity: 1;
+  }
