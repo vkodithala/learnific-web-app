@@ -7,6 +7,7 @@ import { useStepperContext } from "../../contexts/StepperContext";
 export default function Personalization() {
   const { userData, setUserData } = useStepperContext();
   const newsletterFrequencyOptions = ['Daily', 'Weekly', 'Monthly'];
+  const newsletterScopeOptions = ['General', 'Technical'];
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
@@ -18,7 +19,11 @@ export default function Personalization() {
           Do you prefer more technical information or more general overveiws in your newsletter?
         </div>
         <div className="my-2">
-          <Dropdown options={['Technical', 'General']}/>
+          <Dropdown options={newsletterScopeOptions}
+          onChange={handleChange}
+          value={userData["scope"] || ""}
+          name="scope"
+          />
         </div>
       </div>
       <div className="w-full mx-2 flex-1">
@@ -26,7 +31,11 @@ export default function Personalization() {
           How often would you like to recieve the newsletter?
         </div>
         <div className="my-2">
-          <Dropdown options={newsletterFrequencyOptions}/>
+          <Dropdown options={newsletterFrequencyOptions}
+          onChange={handleChange}
+          value={userData["frequency"] || ""}
+          name="frequency"
+          />
         </div>
       </div>
       <div className="w-full mx-2 flex-1">

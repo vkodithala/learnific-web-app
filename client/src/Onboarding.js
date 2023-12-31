@@ -1,23 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Stepper from "./components/Stepper";
 import StepperControl from "./components/StepperControl";
-import {UseContextProvider} from "./contexts/StepperContext";
+import {StepperContextProvider, useStepperContext} from "./contexts/StepperContext";
 import GeneralInfo from "./components/steps/GeneralInfo";
 import Completed from "./components/steps/Complete";
 import Personalization from "./components/steps/Personalization";
-import Topic1 from "./components/steps/Topic1";
-import Topic2 from "./components/steps/Topic2";
-import Topic3 from "./components/steps/Topic3";
-import backgroundImage from './signupBack.png';
+import Area1 from "./components/steps/Area1";
+import Area2 from "./components/steps/Area2";
+import Area3 from "./components/steps/Area3";
+import backgroundImage from './signupBack.png'; 
 
-function App() {
+function Onboarding() {
   const [currentStep, setCurrentStep] = useState(1);
+  const { userData } = useStepperContext();
+
+
+  useEffect(() => {
+    console.log("userData updated:", userData);
+  }, [userData]);
 
   const steps = [
     "General Information",
-    "Topic 1",
-    "Topic 2",
-    "Topic 3",
+    "Area 1",
+    "Area 2",
+    "Area 3",
     "Personalization",
     "Complete",
   ];
@@ -27,11 +33,11 @@ function App() {
       case 1:
         return <GeneralInfo />;
       case 2:
-        return < Topic1/>;
+        return < Area1/>;
       case 3:
-        return < Topic2/>;
+        return < Area2/>;
       case 4:
-        return < Topic3/>;
+        return < Area3/>;
       case 5:
         return <Personalization />;
       case 6:
@@ -64,7 +70,7 @@ function App() {
         <Stepper steps={steps} currentStep={currentStep} />
 
         <div className="my-10 p-10 ">
-          <UseContextProvider>{displayStep(currentStep)}</UseContextProvider>
+          <StepperContextProvider>{displayStep(currentStep)}</StepperContextProvider>
         </div>
       </div>
 
@@ -81,4 +87,4 @@ function App() {
   );
 }
 
-export default App;
+export default Onboarding;
