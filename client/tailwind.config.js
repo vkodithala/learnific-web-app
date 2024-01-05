@@ -4,16 +4,17 @@ module.exports = {
     "./src/App.js",
     "./src/index.js",
     "./src/Onboarding.js",
+    "./src/Personalities.js",
     "./src/components/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
       colors: {
-        goldenYellow:'#FFD977',
-        mustard:'#9D7E2E'
+        goldenYellow: '#FFD977',
+        mustard: '#9D7E2E',
+        buttonColor: '#283C3D'
       },
     },
   },
   plugins: [],
 }
-

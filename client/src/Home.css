@@ -10,13 +10,6 @@
     text-align: center;
   }
   
-  .container h1 {
-    font-size: 50px; 
-    font-weight: bold;
-    color: #004e7f; 
-    margin-bottom: 20px; 
-    font-family: 'Lucida Handwriting'; 
-  }
   
   @keyframes float {
     0%, 100% {

@@ -6,7 +6,7 @@ import { useStepperContext } from "../../contexts/StepperContext";
 
 export default function Personalization() {
   const { userData, setUserData } = useStepperContext();
-  const newsletterFrequencyOptions = ['Daily', 'Weekly', 'Monthly'];
+  const newsletterFrequencyOptions = ['Daily', 'Weekly'];
   const newsletterScopeOptions = ['General', 'Technical'];
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,9 +45,9 @@ export default function Personalization() {
         <div className="bg-white my-2 p-1 flex border border-gray-200 rounded">
           <input
             onChange={handleChange}
-            value={userData["requests"] || ""}
-            name="requests"
-            placeholder="Requests"
+            value={userData["other"] || ""}
+            name="other"
+            placeholder="other"
             type="text"
             className="p-1 px-2 appearance-none outline-none w-full text-gray-800"
           />

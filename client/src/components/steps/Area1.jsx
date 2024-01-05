@@ -9,13 +9,13 @@ export default function Area1() {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
   };
-  const firstArea = typeof userData['areas'] === 'string' ? userData['areas'].split(",")[0] : 'Area';
+ 
 
   return (
     <div className="flex flex-col ">
       <div className="w-full mx-2 flex-1">
         <div className="font-bold h-6 mt-3 text-gray-500 text-xs leading-8 uppercase">
-          What specifically about {firstArea} interests you? ([SHOW EXAMPLES])
+          What specifically about {userData['area1']} interests you?
         </div>
         <div className="bg-white my-2 p-1 flex border border-gray-200 rounded">
         <input
@@ -29,7 +29,7 @@ export default function Area1() {
       </div>
       <div className="w-full mx-2 flex-1">
         <div className="font-bold h-6 mt-3 text-gray-500 text-xs leading-8 uppercase">
-          Why does {firstArea} facinate you? The more specific the better!
+          Why does {userData['area1']} facinate you? The more specific the better!
         </div>
         <div className="bg-white my-2 p-1 flex border border-gray-200 rounded">
           <input
@@ -43,7 +43,7 @@ export default function Area1() {
       </div>
       <div className="w-full mx-2 flex-1">
         <div className="font-bold h-6 mt-3 text-gray-500 text-xs leading-8 uppercase">
-          Rate your expertice in {firstArea} from 1-5
+          Rate your expertise in {userData['area1']} from 1-5
         </div>
         <div className="my-2">
           <Dropdown 

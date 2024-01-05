@@ -10,7 +10,7 @@ export default function completed() {
           Thank You!
         </div>
         <div className="text-lg font-semibold text-gray-500">
-          We will work hard to curate the best articles for you! 
+          We will work hard to curate the best articles for you! On the next page, you will be able to select your own AI writer to curate your newsletter.
         </div>
         <div className="my-3">
         <Link to="/Personalities">
