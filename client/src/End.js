@@ -1,30 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
-// Import your images
+import { BrowserRouter as Router, Link } from 'react-router-dom';
+import 'tailwindcss/tailwind.css';
 import backgroundImage from './landingPage.png';
-import logoImage from './logo.png';
-import heroImage from './hero.png';
+import logoImage from './logo.png'; // Add your actual logo image path here
 
-const EndPage = () => {
-  const goldenTextStyle = {
-    color: '#EAB323', // Golden text color
-  };
-
-  // The common style for both h1 and h2 tags
-  const textStyle = {
-    textAlign: 'center',
-    fontFamily: 'Inter, sans-serif', // Include a fallback font
-    fontSize: '55px', // Your specified font-size
-    fontWeight: '700',
-    lineHeight: 'normal',
-    color: '#1D1C24', // Default text color
-    // Omitted flex-shrink as it has no effect on non-flex items
-    // Omitted width and height to allow text to size naturally
-    margin: '0', // Reset default margins
-    padding: '0.5rem 0', // Add some padding at top and bottom
-  };
-
+const Home = () => {
   return (
     <div style={{
       backgroundImage: `url(${backgroundImage})`,
@@ -35,32 +15,47 @@ const EndPage = () => {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      textAlign: 'center',
     }}>
-      <img src={logoImage} alt="Logo" style={{ marginBottom: '2rem', height: '50px' }} />
-      <div style={{ maxWidth: '1315px' }}> {/* Added a container to control text width */}
-        <h1 style={textStyle}>
-          Thank you, we will notify you when you can begin your 
-          <span style={goldenTextStyle}> Origin Story of Knowledge, Discovery, and Curiosity</span>
-        </h1>
-      </div>
-      <img src={heroImage} alt="Person at Computer" style={{ margin: '2rem', width: '20%' }} />
-      <Link to="/" style={{ textDecoration: 'none' }}>
-        <button style={{
-          padding: '1rem',
-          fontSize: '1rem',
-          backgroundColor: '#EAB323', // Example button color
-          color: '#1D1C24', // Example text color for button
-          border: 'none',
-          borderRadius: '4px',
-          cursor: 'pointer',
-          marginTop: '2rem'
+      <header style={{
+        position: 'absolute',
+        top: 0,
+        width: '100%',
+        padding: '1rem',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}>
+        <Link to="/">
+          <img src={logoImage} alt="Logo" style={{ height: '50px' }} />
+        </Link>
+      </header>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '80%',
+        maxWidth: '1200px',
+      }}>
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          textAlign: 'center',
+          '@media (max-width: 600px)': {
+            marginBottom: '20px',
+          }
         }}>
-          Back to Home
-        </button>
-      </Link>
+          <div class="flex justify-between flex-col gap-2">
+            <div class="">
+              <h1 class="font-bold text-5xl text-buttonColor mb-4"><span class="text-highlightColor">You're in!</span> We'll let you know when we launch our private beta.</h1>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default EndPage;
+export default Home;

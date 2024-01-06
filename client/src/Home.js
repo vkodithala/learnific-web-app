@@ -32,7 +32,9 @@ const Home = () => {
         justifyContent: 'space-between',
         alignItems: 'center',
       }}>
-        <img src={logoImage} alt="Logo" style={{ height: '50px' }} />
+        <Link to="/">
+          <img src={logoImage} alt="Logo" style={{ height: '50px' }} />
+        </Link>
       </header>
       <div style={{
         display: 'flex',

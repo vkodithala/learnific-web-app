@@ -41,20 +41,15 @@ const Personalities = () => {
     },
   ];
 
-  
-//this needs to be fixed
+
   const handleWriterSelect = (writerId) => {
-    setSelectedWriter(writerId);
-    setUserData({ ...userData, ["personality"]: writerId });
-    if (selectedWriter != null) {
-      const selectedWriterData = writersData.find(writer => writer.id == selectedWriter);
-      setSelectedWriter(selectedWriterData)
-    }
+    const selectedWriterData = writersData.find(writer => writer.id == writerId);
+    setSelectedWriter(selectedWriterData);
   };
 
   const submitAnswers = async () => {
     try {
-      const response = await fetch('http://3.145.96.145:5000/submit', {
+      const response = await fetch('https://3.145.96.145:5000/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -144,7 +139,7 @@ const Personalities = () => {
           </div>
         </div>
         <Link to="/end">
-          <button className="confirm-button" onClick={submitAnswers}>Confirm</button>
+          <button className="mt-4 border-2 rounded-xl hover:bg-buttonColor hover:border-transparent hover:text-slate-100 font-semibold py-3 px-10 hover:bg-inherit border-buttonColor text-buttonColor transition duration-500" onClick={submitAnswers}>Confirm</button>
         </Link>
       </>
     )}
