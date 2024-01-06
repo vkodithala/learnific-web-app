@@ -6,6 +6,7 @@ module.exports = {
     "./src/index.js",
     "./src/Onboarding.js",
     "./src/Personalities.js",
+    "./src/components/steps/Complete.jsx",
     "./src/components/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {

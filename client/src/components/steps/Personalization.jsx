@@ -15,8 +15,8 @@ export default function Personalization() {
   return (
     <div className="flex flex-col ">
       <div className="w-full mx-2 flex-1">
-        <div className="font-bold h-6 mt-3 text-gray-500 text-xs leading-8 uppercase">
-          Do you prefer more technical information or more general overveiws in your newsletter?
+        <div className="font-bold mt-3 text-gray-500 text-xs uppercase">
+          Do you prefer more technical info or general overivews in your newsletter?
         </div>
         <div className="my-2">
           <Dropdown options={newsletterScopeOptions}
@@ -27,8 +27,8 @@ export default function Personalization() {
         </div>
       </div>
       <div className="w-full mx-2 flex-1">
-        <div className="font-bold h-6 mt-3 text-gray-500 text-xs leading-8 uppercase">
-          How often would you like to recieve the newsletter?
+        <div className="font-bold mt-3 text-gray-500 text-xs uppercase">
+          How often would you like to receive your personalized newsletter?
         </div>
         <div className="my-2">
           <Dropdown options={newsletterFrequencyOptions}
@@ -40,7 +40,7 @@ export default function Personalization() {
       </div>
       <div className="w-full mx-2 flex-1">
         <div className="font-bold h-6 mt-3 text-gray-500 text-xs leading-8 uppercase">
-          Do you have any other requests for the Newsletter?
+          Any other requests for our content curators?
         </div>
         <div className="bg-white my-2 p-1 flex border border-gray-200 rounded">
           <input

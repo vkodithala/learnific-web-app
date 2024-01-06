@@ -26,7 +26,7 @@ export default function GeneralInfo() {
             onChange={handleChange}
             value={userData["FirstName"] || ""}
             name="FirstName"
-            placeholder="First Name"
+            placeholder="Johnny"
             className="w-full appearance-none p-1 px-2 text-gray-800 outline-none"
           />
         </div>
@@ -40,21 +40,21 @@ export default function GeneralInfo() {
             onChange={handleChange}
             value={userData["LastName"] || ""}
             name="LastName"
-            placeholder="Last Name"
+            placeholder="Appleseed"
             className="w-full appearance-none p-1 px-2 text-gray-800 outline-none"
           />
         </div>
       </div>
-      <div className="mx-2 w-full flex-1">
-        <div className="mt-3 h-6 text-xs font-bold uppercase leading-8 text-gray-500">
-            What are some general research areas that light you up? (ex. AI, Physics, Politics)
+      <div className="mx-2 w-full flex flex-col">
+        <div className="mt-3 text-xs font-bold uppercase text-gray-500">
+            What are three general research areas that interest you? 
         </div>
         <div className="my-2 flex rounded border border-gray-200 bg-white p-1">
           <input
             onChange={handleChange}
             value={userData["area1"] || ""}
             name="area1"
-            placeholder="AI"
+            placeholder="Artificial Intelligence"
             className="w-full appearance-none p-1 px-2 text-gray-800 outline-none"
           />
         </div>

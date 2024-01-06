@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import Stepper from "./components/Stepper";
 import StepperControl from "./components/StepperControl";
 import { useStepperContext } from "./contexts/StepperContext"; // Only useStepperContext is needed
@@ -106,19 +107,24 @@ function Onboarding() {
       justifyContent: 'center',
       padding: '20px',  // Added padding
     }}>
-      <img
-        src={logoImage}
-        alt="Logo"
-        style={{
-          width: "200px",
-          height: "auto",
-          marginBottom: "20px",
-        }}
-      />
-      <div className="mx-auto rounded-2xl bg-white pb-2 shadow-xl md:w-1/2">
+      <Link to="/">
+        <img
+          src={logoImage}
+          alt="Logo"
+          style={{
+            width: "200px",
+            height: "auto",
+            marginBottom: "20px",
+          }}
+          className="hidden md:block"
+        />
+      </Link>
+      <div className="mx-auto rounded-2xl bg-white pb-2 shadow-xl w-full lg:w-1/2">
         {/* Stepper */}
-        <div className="horizontal container mt-5">
-          <Stepper steps={steps} currentStep={currentStep} />
+        <div className="horizontal container lg:mt-5">
+          <div className="hidden lg:block">
+            <Stepper steps={steps} currentStep={currentStep} />
+          </div>
           <div className="my-10 p-10">
             {displayStep(currentStep)} {/* Directly call displayStep without StepperContextProvider */}
           </div>

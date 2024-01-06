@@ -4,7 +4,7 @@ export default function StepperControl({ handleClick, currentStep, steps, isStep
       {/* Back Button */}
       <button
         onClick={() => currentStep !== 1 && handleClick('prev')}
-        className={`cursor-pointer rounded-xl border-2 border-slate-300 bg-white py-2 px-4 font-semibold uppercase text-slate-400 transition duration-200 ease-in-out hover:bg-slate-700 hover:text-white ${
+        className={`cursor-pointer rounded-xl border-2 border-slate-300 bg-white py-2 px-4 font-semibold uppercase text-slate-400 transition duration-200 ease-in-out hover:text-buttonColor hover:border-buttonColor ${
           currentStep === 1 ? "cursor-not-allowed opacity-50" : ""
         }`}
         disabled={currentStep === 1}
