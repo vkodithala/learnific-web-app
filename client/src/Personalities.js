@@ -4,6 +4,9 @@ import backgroundImage from './signupBack.png';
 import { useStepperContext } from "./contexts/StepperContext.js";
 import 'tailwindcss/tailwind.css'
 import { Link } from "react-router-dom";
+import { createClient } from "@supabase/supabase-js"
+
+const supabase = createClient(SUPA_URL, SUPA_PK)
 
 const Personalities = () => {
   const [selectedWriter, setSelectedWriter] = useState(null);
@@ -48,25 +51,27 @@ const Personalities = () => {
   };
 
   const submitAnswers = async () => {
-    try {
-      const response = await fetch('http://origin-backend.varoonkodithala.com:5000/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-      });
-  
-      if (response.ok) {
-        console.log("Answers submitted successfully");
-      } else {
-        console.error("Failed to submit answers");
-      }
-  
-  
-    } catch (error) {
-      console.error("Error submitting answers:", error);
+    console.log(userData);
+    const interests = [];
+    for (let i = 1; i < 4; i++) {
+      interests.push({
+        'area': userData[`area${i}`],
+        'topics': userData[`topics${i}`],
+        'expertise': userData[`expertise${i}`]
+      })
     }
+    const fmt_data = {
+      'first_name': userData['FirstName'],
+      'last_name': userData['LastName'],
+      'email': null,
+      'interests': interests,
+      'detailed': userData['scope'] == 'Technical',
+      'daily': userData['frequency'] == 'Daily',
+      'other': userData['other'],
+      'personality': null
+    }
+    const { error } = await supabase.from('userdata').insert(fmt_data)
+    console.log(error);
   };
   
 
