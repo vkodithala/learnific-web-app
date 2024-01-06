@@ -5,8 +5,9 @@ import { useStepperContext } from "./contexts/StepperContext.js";
 import 'tailwindcss/tailwind.css'
 import { Link } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js"
+require('dotenv').config();
 
-const supabase = createClient(SUPA_URL, SUPA_PK)
+const supabase = createClient(process.env.SUPA_URL, process.env.SUPA_PK)
 
 const Personalities = () => {
   const [selectedWriter, setSelectedWriter] = useState(null);
