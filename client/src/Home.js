@@ -56,7 +56,7 @@ const Home = () => {
         }}>
           <div class="flex justify-between flex-col gap-2">
           <div class="flex items-center justify-center">
-            <img src={ heroImage } alt="origin-mascot-img" class="justify-center mb-10" style={{ height: '250px', width: '275px' }} />
+            <img src={ heroImage } alt="origin-mascot-img" class="hidden md:block justify-center mb-10" style={{ height: '250px', width: '275px' }} />
           </div>
             <div class="">
               <h1 class="font-bold text-5xl text-buttonColor mb-4">Unleash the Superpower of <span class="text-highlightColor">Knowledge</span></h1>
