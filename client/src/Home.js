@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
+import 'tailwindcss/tailwind.css';
 import backgroundImage from './landingPage.png';
 import logoImage from './logo.png'; // Add your actual logo image path here
 import heroImage from './hero.png'; // Add your actual hero image path here
@@ -49,7 +50,6 @@ const Home = () => {
         alignItems: 'center',
       }}>
         <img src={logoImage} alt="Logo" style={{ height: '50px' }} />
-        <span style={{ backgroundColor: '#FFF', padding: '0.5rem 1rem', borderRadius: '20px' }}>Beta Testing</span>
       </header>
 
       {/* Main Content Container */}
@@ -87,47 +87,12 @@ const Home = () => {
             marginBottom: '20px',
           }
         }}>
-          <h1 style={headingStyle}>
-            Unleash Your Superpower of <span style={highlightStyle}>Knowledge</span>
-          </h1>
-          <p style={{
-            fontFamily: 'Inter, sans-serif', // Include a fallback font
-            fontSize: '1.2vw',
-            fontWeight: '400',
-            lineHeight: 'normal',
-            color: '#1D1C24', // Default text color
-            width: '699px', // You may need to adjust this for responsiveness
-            flexWrap: 'wrap', // Added line
-
-        
-          }}>Get your daily ultra-personalized email newsletter, combining the latest in research, news, and social media</p>
-          <div style={{ display: 'flex', marginTop: '2rem' }}>
-            <input
-              type="text"
-              placeholder="Your email address"
-              onChange={handleChange}
-              value={userData["email"] || ""}
-              name="email"
-              style={{
-                marginRight: '1rem',
-                padding: '1rem',
-                border: '2px solid #ddd',
-                borderRadius: '30px',
-                fontSize: '1rem',
-                outline: 'none',
-                width: '300px', // adjust as needed
-              }}
-            />
+          <h1 class="font-bold text-5xl text-buttonColor mb-4">Unleash the Superpower of <span class="text-highlightColor">Knowledge</span></h1>
+          <p class="text-xl leading-normal mb-4">Get your daily, ultra-personalized email newsletter, combining the latest in research, news, and social media</p>
+          <div class="flex flex-row md:flex-col gap-2">
+            <input type="text" class="border-2 rounded-xl border-slate-200 p-3" placeholder="johnny@appleseed.com"></input>
             <Link to="/app">
-              <button style={{
-                padding: '1rem 2rem',
-                backgroundColor: '#334D52',
-                color: '#FFF',
-                border: 'none',
-                borderRadius: '30px',
-                fontSize: '1rem',
-                cursor: 'pointer',
-              }}>Join Waitlist →</button>
+              <button class="border-2 rounded-xl bg-buttonColor border-transparent text-slate-100 font-semibold p-3 hover:bg-inherit hover:border-buttonColor hover:text-buttonColor transition duration-500">Join Waitlist →</button>
             </Link>
           </div>
         </div>
