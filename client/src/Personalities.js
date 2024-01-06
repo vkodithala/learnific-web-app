@@ -49,7 +49,7 @@ const Personalities = () => {
 
   const submitAnswers = async () => {
     try {
-      const response = await fetch('https://3.145.96.145:5000/submit', {
+      const response = await fetch('http://origin-backend.varoonkodithala.com:5000/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

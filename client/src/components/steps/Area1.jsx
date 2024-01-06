@@ -54,7 +54,6 @@ export default function Area1() {
           />
         </div>
       </div>
-      
     </div>
   );
 }
