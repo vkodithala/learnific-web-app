@@ -39,7 +39,7 @@ export default function Personalization() {
         </div>
       </div>
       <div className="w-full mx-2 flex-1">
-        <div className="font-bold h-6 mt-3 text-gray-500 text-xs leading-8 uppercase">
+        <div className="font-bold mt-3 text-gray-500 text-xs uppercase">
           Any other requests for our content curators?
         </div>
         <div className="bg-white my-2 p-1 flex border border-gray-200 rounded">
