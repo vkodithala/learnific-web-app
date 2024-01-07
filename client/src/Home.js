@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import 'tailwindcss/tailwind.css';
-import backgroundImage from './landingPage.png';
-import logoImage from './logo.png'; // Add your actual logo image path here
-import heroImage from './hero.png'; // Add your actual hero image path here
+import backgroundImage from './backgrounds/landingPage.png';
+import logoImage from './logos/logo.png';
+import heroImage from './logos/hero.png';
 import { useStepperContext } from "./contexts/StepperContext.js";
 
 const Home = () => {

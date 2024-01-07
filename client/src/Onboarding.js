@@ -3,14 +3,14 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 import Stepper from "./components/Stepper";
 import StepperControl from "./components/StepperControl";
 import { useStepperContext } from "./contexts/StepperContext"; // Only useStepperContext is needed
-import GeneralInfo from "./components/steps/GeneralInfo";
-import Completed from "./components/steps/Complete";
-import Personalization from "./components/steps/Personalization";
-import Area1 from "./components/steps/Area1";
-import Area2 from "./components/steps/Area2";
-import Area3 from "./components/steps/Area3";
-import backgroundImage from './signupBack.png';
-import logoImage from './logo.png'; 
+import GeneralInfo from "./components/onboarding/GeneralInfo";
+import Completed from "./components/onboarding/Complete";
+import Personalization from "./components/onboarding/Personalization";
+import Area1 from "./components/onboarding/Area1";
+import Area2 from "./components/onboarding/Area2";
+import Area3 from "./components/onboarding/Area3";
+import backgroundImage from './backgrounds/signupBack.png';
+import logoImage from './logos/logo.png'; 
 
 function Onboarding() {
   const [currentStep, setCurrentStep] = useState(1);
