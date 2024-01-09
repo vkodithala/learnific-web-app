@@ -63,7 +63,7 @@ const Personalities = () => {
     const fmt_data = {
       'first_name': userData['FirstName'],
       'last_name': userData['LastName'],
-      'email': null,
+      'email': userData['email'],
       'interests': interests,
       'detailed': userData['scope'] == 'Technical',
       'daily': userData['frequency'] == 'Daily',
