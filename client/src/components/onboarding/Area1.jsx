@@ -1,6 +1,5 @@
 import { useStepperContext, StepperContext } from "../../contexts/StepperContext";
 import useContext from "react";
-import Rating from "../Rating";
 import Dropdown from "../Dropdown";
 export default function Area1() {
   const { userData, setUserData } = useStepperContext();
