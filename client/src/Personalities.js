@@ -51,27 +51,41 @@ const Personalities = () => {
   };
 
   const submitAnswers = async () => {
-    console.log(userData);
-    const interests = [];
-    for (let i = 1; i < 4; i++) {
-      interests.push({
-        'area': userData[`area${i}`],
-        'topics': userData[`topics${i}`],
-        'expertise': userData[`expertise${i}`]
+    const toSend = {
+      'userData': userData,
+      'userPersonality': selectedWriter.name
+    }
+    const response = await fetch('https://0889-2600-1702-19c0-2050-911e-ad7c-202-d507.ngrok-free.app/api', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: 'Reader'
       })
-    }
-    const fmt_data = {
-      'first_name': userData['FirstName'],
-      'last_name': userData['LastName'],
-      'email': null,
-      'interests': interests,
-      'detailed': userData['scope'] == 'Technical',
-      'daily': userData['frequency'] == 'Daily',
-      'other': userData['other'],
-      'personality': selectedWriter.name,
-    }
-    const { error } = await supabase.from('userdata').insert(fmt_data)
-    console.log(error);
+    });
+    console.log(response);
+    // console.log(userData);
+    // const interests = [];
+    // for (let i = 1; i < 4; i++) {
+    //   interests.push({
+    //     'area': userData[`area${i}`],
+    //     'topics': userData[`topics${i}`],
+    //     'expertise': userData[`expertise${i}`]
+    //   })
+    // }
+    // const fmt_data = {
+    //   'first_name': userData['FirstName'],
+    //   'last_name': userData['LastName'],
+    //   'email': null,
+    //   'interests': interests,
+    //   'detailed': userData['scope'] == 'Technical',
+    //   'daily': userData['frequency'] == 'Daily',
+    //   'other': userData['other'],
+    //   'personality': selectedWriter.name,
+    // }
+    // const { error } = await supabase.from('userdata').insert(fmt_data)
+    // console.log(error);
   };
   
 
