@@ -6,7 +6,7 @@ import 'tailwindcss/tailwind.css'
 import { Link } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js"
 
-const supabase = createClient('https://idegllorgsfkwkenduqa.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlkZWdsbG9yZ3Nma3drZW5kdXFhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDMyMTk1MDQsImV4cCI6MjAxODc5NTUwNH0.AAbqdc-QXUKtaut6DVTo44r1n2PynxKwWVNg7YJnYXU')
+const supabase = createClient(process.env.NEXT_PUBLIC_SUPA_URL, process.env.NEXT_PUBLIC_SUPA_PK);
 
 const Personalities = () => {
   const [selectedWriter, setSelectedWriter] = useState(null);
@@ -51,43 +51,14 @@ const Personalities = () => {
   };
 
   const submitAnswers = async () => {
-    const toSend = {
-      'userData': userData,
-      'userPersonality': selectedWriter.name
-    }
-    const response = await fetch('https://0889-2600-1702-19c0-2050-911e-ad7c-202-d507.ngrok-free.app/api', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: 'Reader'
+    console.log(userData);
+    const interests = [];
+    for (let i = 1; i < 4; i++) {
+      interests.push({
+        'area': userData[`area${i}`],
+        'topics': userData[`topics${i}`],
+        'expertise': userData[`expertise${i}`]
       })
-<<<<<<< HEAD
-    });
-    console.log(response);
-    // console.log(userData);
-    // const interests = [];
-    // for (let i = 1; i < 4; i++) {
-    //   interests.push({
-    //     'area': userData[`area${i}`],
-    //     'topics': userData[`topics${i}`],
-    //     'expertise': userData[`expertise${i}`]
-    //   })
-    // }
-    // const fmt_data = {
-    //   'first_name': userData['FirstName'],
-    //   'last_name': userData['LastName'],
-    //   'email': null,
-    //   'interests': interests,
-    //   'detailed': userData['scope'] == 'Technical',
-    //   'daily': userData['frequency'] == 'Daily',
-    //   'other': userData['other'],
-    //   'personality': selectedWriter.name,
-    // }
-    // const { error } = await supabase.from('userdata').insert(fmt_data)
-    // console.log(error);
-=======
     }
     const fmt_data = {
       'first_name': userData['FirstName'],
@@ -101,7 +72,6 @@ const Personalities = () => {
     }
     const { error } = await supabase.from('userdata').insert(fmt_data)
     console.log(error);
->>>>>>> 9f4510e122f14f3000bb66abb2c9df70d00d045a
   };
   
 
