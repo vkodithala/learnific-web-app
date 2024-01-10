@@ -1,5 +1,4 @@
 import { useStepperContext } from "../../contexts/StepperContext";
-import Rating from "../Rating";
 import Dropdown from "../Dropdown";
 
 export default function Area2() {

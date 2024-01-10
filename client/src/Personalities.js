@@ -63,6 +63,7 @@ const Personalities = () => {
       body: JSON.stringify({
         name: 'Reader'
       })
+<<<<<<< HEAD
     });
     console.log(response);
     // console.log(userData);
@@ -86,6 +87,21 @@ const Personalities = () => {
     // }
     // const { error } = await supabase.from('userdata').insert(fmt_data)
     // console.log(error);
+=======
+    }
+    const fmt_data = {
+      'first_name': userData['FirstName'],
+      'last_name': userData['LastName'],
+      'email': userData['email'],
+      'interests': interests,
+      'detailed': userData['scope'] == 'Technical',
+      'daily': userData['frequency'] == 'Daily',
+      'other': userData['other'],
+      'personality': selectedWriter.name,
+    }
+    const { error } = await supabase.from('userdata').insert(fmt_data)
+    console.log(error);
+>>>>>>> 9f4510e122f14f3000bb66abb2c9df70d00d045a
   };
   
 
