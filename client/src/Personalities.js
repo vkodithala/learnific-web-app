@@ -57,7 +57,8 @@ const Personalities = () => {
       interests.push({
         'area': userData[`area${i}`],
         'topics': userData[`topics${i}`],
-        'expertise': userData[`expertise${i}`]
+        'expertise': userData[`expertise${i}`],
+        'why': userData[`why${i}`],
       })
     }
     const fmt_data = {
