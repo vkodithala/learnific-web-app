@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { useStepperContext } from "./contexts/StepperContext"; 
 import 'tailwindcss/tailwind.css';
 import backgroundImage from './backgrounds/landingPage.png';
 import logoImage from './logos/logo.png';
