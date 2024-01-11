@@ -28,13 +28,13 @@ function Onboarding() {
         setIsStepValid(userData.FirstName && userData.LastName && userData.area1 && userData.area2 && userData.area3);
         break;
       case 2: // Area1 step
-        setIsStepValid(userData.topics1 && userData.why1 && userData.expertise1);
+        setIsStepValid(userData.topics1 && userData.why1);
         break;
       case 3: // Area2 step
-        setIsStepValid(userData.topics2 && userData.why2 && userData.expertise2);
+        setIsStepValid(userData.topics2 && userData.why2);
         break;
       case 4: // Area3 step
-        setIsStepValid(userData.topics3 && userData.why3 && userData.expertise3); 
+        setIsStepValid(userData.topics3 && userData.why3); 
         break;
       // case 5: // Personalization step
       //   setIsStepValid(userData.frequency && userData.scope);
