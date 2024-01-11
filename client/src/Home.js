@@ -7,7 +7,7 @@ import heroImage from './logos/hero.png';
 import { useStepperContext } from "./contexts/StepperContext.js";
 
 const Home = () => {
-  const url = process.env.NEXT_PUBLIC_SUPA_URL;
+  const url = process.env.REACT_APP_SUPA_URL;
   console.log(url);
   const { userData, setUserData } = useStepperContext();
   const handleChange = (e) => {
