@@ -93,13 +93,13 @@ const Home = () => {
             </div>
             <div class="flex flex-col text-left border-2 rounded-lg bg-inherit border-buttonColor p-3 w-1/2">
               <div class="m-2 font-bold text-2xl text-buttonColor">
-                Frictionless
+                Get all the latest news on the topics that you care about.
               </div>
               <div class="m-2 text-md text-buttonColor">
-                Let your users pay gas with USDC. No more worrying about MATIC or ETH.
+                Be the first one to know about all the recent developments in your field. Right to your inbox. We'll find the most relevant recent news articles in your field and extract the most relevant information for you.
               </div>
               <div class="m-2 text-md text-buttonColor">
-                Tokenize an asset and pay dividends in clicks.
+                We'll get news directly from your favorite sources, like the New York Times, Wall Street Journal, Reuters, Ars Technica, and more.
               </div>
             </div>
             <div class="flex flex-col text-left border-2 rounded-lg bg-inherit border-buttonColor p-3 w-1/2">
