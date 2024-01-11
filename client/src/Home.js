@@ -5,6 +5,7 @@ import backgroundImage from './backgrounds/landingPage.png';
 import logoImage from './logos/logo.png';
 import heroImage from './logos/hero.png';
 import { useStepperContext } from "./contexts/StepperContext.js";
+import { createClient } from "@supabase/supabase-js"
 
 
 const supabaseUrl = 'https://idegllorgsfkwkenduqa.supabase.co';
@@ -18,7 +19,6 @@ const Home = () => {
   console.log(url);
   const { userData, setUserData } = useStepperContext();
   const handleChange = (e) => {
-    submitEmail();
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
   };
@@ -80,7 +80,7 @@ const Home = () => {
               <div class="flex flex-col lg:flex-row gap-2 justify-center">
                 <input onChange={handleChange} value={userData["email"] || ""} name="email" type="text" class="border-2 rounded-xl border-slate-200 p-3" placeholder="Your Email"></input>
                 <Link to="/app">
-                  <button disabled={!userData["email"]} class="border-2 rounded-xl bg-buttonColor border-transparent text-slate-100 font-semibold p-3 hover:bg-inherit hover:border-buttonColor hover:text-buttonColor transition duration-500">Join Waitlist →</button>
+                  <button onClick={submitEmail} disabled={!userData["email"]} class="border-2 rounded-xl bg-buttonColor border-transparent text-slate-100 font-semibold p-3 hover:bg-inherit hover:border-buttonColor hover:text-buttonColor transition duration-500">Join Waitlist →</button>
                 </Link>
               </div>
             </div>
