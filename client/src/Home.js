@@ -64,10 +64,10 @@ const Home = () => {
             marginBottom: '20px',
           }
         }}>
-          <div class="flex justify-between flex-col gap-2">
-          <div class="flex items-center justify-center">
-            <img src={ heroImage } alt="origin-mascot-img" class="hidden md:block justify-center mb-10" style={{ height: '250px', width: '275px' }} />
-          </div>
+          <div class="flex justify-between flex-col gap-2 m-3">
+            {/* <div class="flex items-center justify-center">
+              <img src={ heroImage } alt="origin-mascot-img" class="hidden my-10 lg:block justify-center" style={{ height: '200x', width: '225px' }} />
+            </div> */}
             <div class="">
               <h1 class="font-bold text-5xl text-buttonColor mb-4">Unleash the Superpower of <span class="text-highlightColor">Knowledge</span></h1>
               <p class="text-xl leading-normal mb-4">Get your daily, ultra-personalized email newsletter, combining the latest in research, news, and social media.</p>
@@ -79,38 +79,35 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div class="flex flex-row mt-5 gap-3">
-            <div class="flex flex-col text-left border-2 rounded-lg bg-inherit border-buttonColor p-3 w-1/2">
+          <div class="flex flex-col md:flex-row mt-5 gap-3">
+            <div class="flex flex-col text-left border-2 rounded-lg bg-inherit border-buttonColor p-3 w-1/2 hidden lg:block">
               <div class="m-2 font-bold text-2xl text-buttonColor">
-                Frictionless
+                The latest in research, delivered to <span class="text-highlightColor italic">you.</span>
               </div>
               <div class="m-2 text-md text-buttonColor">
-                Let your users pay gas with USDC. No more worrying about MATIC or ETH.
-              </div>
-              <div class="m-2 text-md text-buttonColor">
-                Tokenize an asset and pay dividends in clicks.
+                We search from 200M+ research publications (and growing!) to deliver summaries of papers that are relevant to you to your inbox every morning.
               </div>
             </div>
-            <div class="flex flex-col text-left border-2 rounded-lg bg-inherit border-buttonColor p-3 w-1/2">
+            <div class="flex flex-col text-left border-2 rounded-lg bg-inherit border-buttonColor p-3 w-1/2 hidden lg:block">
               <div class="m-2 font-bold text-2xl text-buttonColor">
-                Frictionless
+                <span class="text-highlightColor italic">Get the latest</span> on the topics that you care about.
               </div>
               <div class="m-2 text-md text-buttonColor">
-                Let your users pay gas with USDC. No more worrying about MATIC or ETH.
+                Be the first to know about recent developments in your field. Right to your inbox. We'll find the most relevant recent news articles in your field and extract the most relevant information for you.
               </div>
               <div class="m-2 text-md text-buttonColor">
-                Tokenize an asset and pay dividends in clicks.
+              We'll get news directly from your favorite sources, like the New York Times, Wall Street Journal, Reuters, Ars Technica, and more.
               </div>
             </div>
-            <div class="flex flex-col text-left border-2 rounded-lg bg-inherit border-buttonColor p-3 w-1/2">
+            <div class="flex flex-col text-left border-2 rounded-lg bg-inherit border-buttonColor p-3 w-1/2 hidden lg:block">
               <div class="m-2 font-bold text-2xl text-buttonColor">
-                Frictionless
+                See what the buzz is about on <span class="text-highlightColor italic">social media.</span>
               </div>
               <div class="m-2 text-md text-buttonColor">
-                Let your users pay gas with USDC. No more worrying about MATIC or ETH.
+                The Origin finds the most relevant tweets and posts from your favorite influencers and experts in your field. 
               </div>
               <div class="m-2 text-md text-buttonColor">
-                Tokenize an asset and pay dividends in clicks.
+                We'll find posts directly related to the latest research articles that we find for you, so you're always up-to-date.
               </div>
             </div>
           </div>
