@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js"
 
 const supabase = createClient(process.env.REACT_APP_SUPA_URL, process.env.REACT_APP_SUPA_PK);
+console.log("pushed")
 
 const Personalities = () => {
   const [selectedWriter, setSelectedWriter] = useState(null);
