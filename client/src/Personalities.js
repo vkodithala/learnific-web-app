@@ -58,7 +58,6 @@ const Personalities = () => {
         'area': userData[`area${i}`],
         'topics': userData[`topics${i}`],
         'expertise': userData[`expertise${i}`],
-        'why': userData[`why${i}`],
       })
     }
     const fmt_data = {
@@ -66,9 +65,6 @@ const Personalities = () => {
       'last_name': userData['LastName'],
       'email': userData['email'],
       'interests': interests,
-      'detailed': userData['scope'] == 'Technical',
-      'daily': userData['frequency'] == 'Daily',
-      'other': userData['other'],
       'personality': selectedWriter.name,
     }
     const { error } = await supabase.from('userdata').insert(fmt_data)

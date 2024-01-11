@@ -41,19 +41,6 @@ export default function Area2() {
           />
         </div>
       </div>
-      <div className="w-full mx-2 flex-1">
-        <div className="font-bold mt-3 text-gray-500 text-xs uppercase">
-          Rate your expertise in {userData['area2']} from 1-5!
-        </div>
-        <div className="my-2">
-          <Dropdown 
-            options={expertiseOptions} 
-            onChange={handleChange}
-            value={userData["expertise2"] || ""}
-            name="expertise2"
-          />
-        </div>
-      </div>
     </div>
   );
 }
