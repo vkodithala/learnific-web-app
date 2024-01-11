@@ -11,8 +11,6 @@ const supabase = createClient(process.env.REACT_APP_SUPA_URL, process.env.REACT_
 
 
 const Home = () => {
-  const url = process.env.REACT_APP_SUPA_URL;
-  console.log(url);
   const { userData, setUserData } = useStepperContext();
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -72,12 +70,47 @@ const Home = () => {
           </div>
             <div class="">
               <h1 class="font-bold text-5xl text-buttonColor mb-4">Unleash the Superpower of <span class="text-highlightColor">Knowledge</span></h1>
-              <p class="text-xl leading-normal mb-4">Get your daily, ultra-personalized email newsletter, combining the latest in research, news, and social media</p>
+              <p class="text-xl leading-normal mb-4">Get your daily, ultra-personalized email newsletter, combining the latest in research, news, and social media.</p>
               <div class="flex flex-col lg:flex-row gap-2 justify-center">
                 <input onChange={handleChange} value={userData["email"] || ""} name="email" type="text" class="border-2 rounded-xl border-slate-200 p-3" placeholder="Your Email"></input>
                 <Link to="/onboarding">
                   <button onClick={submitEmail} disabled={!userData["email"]} class="border-2 rounded-xl bg-buttonColor border-transparent text-slate-100 font-semibold p-3 hover:bg-inherit hover:border-buttonColor hover:text-buttonColor transition duration-500">Join Waitlist →</button>
                 </Link>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-row mt-5 gap-3">
+            <div class="flex flex-col text-left border-2 rounded-lg bg-inherit border-buttonColor p-3 w-1/2">
+              <div class="m-2 font-bold text-2xl text-buttonColor">
+                Frictionless
+              </div>
+              <div class="m-2 text-md text-buttonColor">
+                Let your users pay gas with USDC. No more worrying about MATIC or ETH.
+              </div>
+              <div class="m-2 text-md text-buttonColor">
+                Tokenize an asset and pay dividends in clicks.
+              </div>
+            </div>
+            <div class="flex flex-col text-left border-2 rounded-lg bg-inherit border-buttonColor p-3 w-1/2">
+              <div class="m-2 font-bold text-2xl text-buttonColor">
+                Frictionless
+              </div>
+              <div class="m-2 text-md text-buttonColor">
+                Let your users pay gas with USDC. No more worrying about MATIC or ETH.
+              </div>
+              <div class="m-2 text-md text-buttonColor">
+                Tokenize an asset and pay dividends in clicks.
+              </div>
+            </div>
+            <div class="flex flex-col text-left border-2 rounded-lg bg-inherit border-buttonColor p-3 w-1/2">
+              <div class="m-2 font-bold text-2xl text-buttonColor">
+                Frictionless
+              </div>
+              <div class="m-2 text-md text-buttonColor">
+                Let your users pay gas with USDC. No more worrying about MATIC or ETH.
+              </div>
+              <div class="m-2 text-md text-buttonColor">
+                Tokenize an asset and pay dividends in clicks.
               </div>
             </div>
           </div>
