@@ -14,6 +14,8 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 
 const Home = () => {
+  const url = process.env.NEXT_PUBLIC_SUPA_URL;
+  console.log(url);
   const { userData, setUserData } = useStepperContext();
   const handleChange = (e) => {
     submitEmail();
