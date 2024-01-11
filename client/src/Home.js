@@ -6,14 +6,28 @@ import logoImage from './logos/logo.png';
 import heroImage from './logos/hero.png';
 import { useStepperContext } from "./contexts/StepperContext.js";
 
+
+const supabaseUrl = 'https://idegllorgsfkwkenduqa.supabase.co';
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlkZWdsbG9yZ3Nma3drZW5kdXFhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDMyMTk1MDQsImV4cCI6MjAxODc5NTUwNH0.AAbqdc-QXUKtaut6DVTo44r1n2PynxKwWVNg7YJnYXU';
+
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+
 const Home = () => {
   const url = process.env.REACT_APP_SUPA_URL;
   console.log(url);
   const { userData, setUserData } = useStepperContext();
   const handleChange = (e) => {
+    submitEmail();
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
   };
+
+  const submitEmail = async () => {
+    const { error } = await supabase.from('emails').insert([{ 'email': userData['email'] }]);
+    console.log(error);
+  };
+  
   return (
     <div style={{
       backgroundImage: `url(${backgroundImage})`,
