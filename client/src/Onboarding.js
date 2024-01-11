@@ -5,7 +5,7 @@ import StepperControl from "./components/StepperControl";
 import { useStepperContext } from "./contexts/StepperContext"; // Only useStepperContext is needed
 import GeneralInfo from "./components/onboarding/GeneralInfo";
 import Completed from "./components/onboarding/Complete";
-import Personalization from "./components/onboarding/Personalization";
+// import Personalization from "./components/onboarding/Personalization";
 import Area1 from "./components/onboarding/Area1";
 import Area2 from "./components/onboarding/Area2";
 import Area3 from "./components/onboarding/Area3";
@@ -36,9 +36,9 @@ function Onboarding() {
       case 4: // Area3 step
         setIsStepValid(userData.topics3 && userData.why3 && userData.expertise3); 
         break;
-      case 5: // Personalization step
-        setIsStepValid(userData.frequency && userData.scope);
-        break;
+      // case 5: // Personalization step
+      //   setIsStepValid(userData.frequency && userData.scope);
+      //   break;
       default:
         setIsStepValid(true);
     }
@@ -56,7 +56,7 @@ function Onboarding() {
     "Area 1",
     "Area 2",
     "Area 3",
-    "Personalization",
+    // "Personalization",
     "Complete",
   ];
 
@@ -70,9 +70,9 @@ function Onboarding() {
         return <Area2 />;
       case 4:
         return <Area3 />;
+      // case 5:
+      //   return <Personalization />;
       case 5:
-        return <Personalization />;
-      case 6:
         return <Completed />;
       default:
         return null;

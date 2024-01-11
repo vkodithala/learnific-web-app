@@ -74,7 +74,7 @@ const Home = () => {
               <p class="text-xl leading-normal mb-4">Get your daily, ultra-personalized email newsletter, combining the latest in research, news, and social media</p>
               <div class="flex flex-col lg:flex-row gap-2 justify-center">
                 <input onChange={handleChange} value={userData["email"] || ""} name="email" type="text" class="border-2 rounded-xl border-slate-200 p-3" placeholder="Your Email"></input>
-                <Link to="/app">
+                <Link to="/onboarding">
                   <button onClick={submitEmail} disabled={!userData["email"]} class="border-2 rounded-xl bg-buttonColor border-transparent text-slate-100 font-semibold p-3 hover:bg-inherit hover:border-buttonColor hover:text-buttonColor transition duration-500">Join Waitlist →</button>
                 </Link>
               </div>
