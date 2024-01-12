@@ -28,7 +28,7 @@ export default function Area1() {
       </div>
       <div className="w-full mx-2 flex-1">
         <div className="font-bold mt-3 text-gray-500 text-xs uppercase">
-          Why does {userData['area1']} interest you? Be specific!
+          Why does <span className="text-highlightColor">{userData['area1']}</span> interest you? Be specific!
         </div>
         <div className="bg-white my-2 p-1 flex border border-gray-200 rounded">
           <input
