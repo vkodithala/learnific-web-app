@@ -15,7 +15,7 @@ export default function Area3() {
     <div className="flex flex-col ">
       <div className="w-full mx-2 flex-1">
         <div className="font-bold mt-3 text-gray-500 text-xs uppercase">
-          What subtopics within {userData['area3']} draw your attention?
+          What subtopics within <span style="font-size: larger; font-weight: bold;">{userData['area3']}</span> draw your attention?
         </div>
         <div className="bg-white my-2 p-1 flex border border-gray-200 rounded">
         <input
